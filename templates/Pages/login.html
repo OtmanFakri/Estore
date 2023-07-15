@@ -1,0 +1,60 @@
+{% extends './../Master/master.html' %}
+
+{% block title %}
+Login Register Section End
+{% endblock %}
+
+
+{% block content %}
+
+        <!-- Login Register Section Start -->
+        <section class="login-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6">
+                        <h3 class="sec-title">Login your account</h3>
+                        <p class="sec-desc">
+                            Login to your account to discovery all great features in this item
+                        </p>
+                        <div class="login-form">
+                            <form action="/login/" method="post">
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <script>
+                                    $('.alert').alert()
+                                </script>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                                {% csrf_token %}
+                                <input type="email" name="email" placeholder="Email">
+                                <input type="password" name="password" placeholder="Your Password">
+                                <div class="keep-log-regi">
+                                    <input type="radio" id="login" name="login" value="keep-login">
+                                    <label for="login">Keep me logged in</label>   
+                                </div>
+                                <a href="#">Forgot your password?</a>
+                                <input type="submit" name="submit" value="login">
+                            </form>
+                        </div>
+                        <div class="social-log-regi">
+                            <h5>OR LOGIN WITH</h5>
+                            <a href="#"><i class="twi-facebook-f"></i></a>
+                            <a href="#"><i class="twi-twitter"></i></a>
+                            <a href="#"><i class="twi-google-plus-g"></i></a>
+                            <a href="#"><i class="twi-instagram"></i></a>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+        <!-- Login Register Section End -->
+
+{% endblock %}
+

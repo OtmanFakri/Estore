@@ -1,0 +1,8 @@
+//install all bibloth
+1-pip install -r requirements.txt 
+//migration Databses 
+2-python3 manage.py migrate
+//create SureUser for Dashbord Admin
+3-python3 manage.py createsuperuser
+//run Project
+4-python manage.py runserver
