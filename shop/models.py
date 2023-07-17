@@ -23,7 +23,7 @@ class Category(models.Model):
 
 
     def __str__(self):
-        return self.category_name
+        return f"{self.category_name} {self.pk}"
 
 
 TAG = (
@@ -50,11 +50,15 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
+    @classmethod
+    def get_products_by_category(cls, category_id):
+        return cls.objects.filter(category__id=category_id)
+
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    qty = models.IntegerField()
+    qty = models.IntegerField(default=1)
 
     @property
     def price(self):
@@ -143,3 +147,12 @@ class Weekly_Deal(models.Model):
 
     def __str__(self):
         return f"Product ID: {self.product.product_name} | Time: {self.time}"
+
+class News(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    published_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='news_images/')
+
+    def __str__(self):
+        return self.title

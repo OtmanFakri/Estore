@@ -348,113 +348,60 @@ Home
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="sec-title">Most Popular</h2>
-                        <ul class="product-tab-title nav nav-tabs">
-                            {% for categorie in categories %}
-                            <li>
-                                <a class="active" href="#all" data-toggle="tab">{{categorie.category_name}}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show in active" id="all" role="tabpanel">
+                        <div class="container">
+                            <ul class="nav nav-pills" id="myTab" role="tablist">
+                              {% for category in trending_categorys %}
+                              <li class="nav-item">
+                                <a class="nav-link{% if forloop.first %} active{% endif %}" id="category-tab-{{ forloop.counter }}" data-toggle="pill" href="#category-{{ forloop.counter }}" role="tab" aria-controls="category-{{ forloop.counter }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                                  {{ category.category_name }}
+                                </a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                            <div class="tab-content mt-3" id="myTabContent">
+                              {% for category in trending_categorys %}
+                              <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="category-{{ forloop.counter }}" role="tabpanel" aria-labelledby="category-tab-{{ forloop.counter }}">
                                 <div class="popular-tab-slider owl-carousel">
-                                    <div class="pp-single-slider">
-                                        <div class="single-popular-product">
-                                            <div class="sp-thumb">
-                                                <img src="assets/images/home/p1.jpg" alt="">
-                                                <div class="pro-badge">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                            </div>
-                                            <div class="sp-details">
-                                                <h4>Gaming Headset</h4>
-                                                <div class="product-price clearfix">
-                                                    <span class="price">
-                                                        <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                        <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
-                                                    </span>         
-                                                </div>
-                                                <div class="sp-details-hover">
-                                                    <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                                    <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                                </div>
-                                            </div>
+                                  {% for product in category.category_list %}
+                                  <div class="pp-single-slider">
+                                    <div class="single-popular-product">
+                                      <div class="sp-thumb">
+                                        <img  width="370" height="460" src="http://127.0.0.1:8000/media/{{product.product_img1}}" alt="">
+                                        {% if product.tag == "Sale" %}
+                                        <div class="pro-badge">
+                                          <p class="sale">Sale</p>
                                         </div>
-                                        <div class="single-popular-product">
-                                            <div class="sp-thumb">
-                                                <img src="{% static 'assets/images/home/p4.jpg' %}" alt="">
-                                                <div class="pro-badge">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                            </div>
-                                            <div class="sp-details">
-                                                <h4>Camera Lens</h4>
-                                                <div class="product-price clearfix">
-                                                    <span class="price">
-                                                        <del><span><span class="woocommerce-Price-currencySymbol">$</span>52.00</span></del>
-                                                        <ins><span><span class="woocommerce-Price-currencySymbol">$</span>48.00</span></ins>
-                                                    </span>         
-                                                </div>
-                                                <div class="sp-details-hover">
-                                                    <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                                    <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                                </div>
-                                            </div>
+                                        {% elif product.tag == "Hot" %}
+                                        <div class="pro-badge">
+                                          <p class="hot">Hot</p>
                                         </div>
-                                    </div>                            
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade in" id="smartphones" role="tabpanel">
-                                <div class="popular-tab-slider owl-carousel">
-                                    <div class="pp-single-slider">
-                                        <div class="single-popular-product">
-                                            <div class="sp-thumb">
-                                                <img src="assets/images/home/p6.jpg" alt="">
-                                                <div class="pro-badge">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                            </div>
-                                            <div class="sp-details">
-                                                <h4>Gaming Headset</h4>
-                                                <div class="product-price clearfix">
-                                                    <span class="price">
-                                                        <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                        <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
-                                                    </span>         
-                                                </div>
-                                                <div class="sp-details-hover">
-                                                    <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                                    <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                                </div>
-                                            </div>
+                                        {% endif %}
+                                      </div>
+                                      <div class="sp-details">
+                                        <h4>{{ product.product_name }}</h4>
+                                        <div class="product-price clearfix">
+                                          <span class="price">
+                                            {% if product.price != 0 %}
+                                            <del><span><span class="woocommerce-Price-currencySymbol">$</span>{{ product.price }}</span></del>
+                                            {% endif %}
+                                          </span>
                                         </div>
-                                        <div class="single-popular-product">
-                                            <div class="sp-thumb">
-                                                <img src="assets/images/home/p5.jpg" alt="">
-                                                <div class="pro-badge">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                            </div>
-                                            <div class="sp-details">
-                                                <h4>Camera Lens</h4>
-                                                <div class="product-price clearfix">
-                                                    <span class="price">
-                                                        <del><span><span class="woocommerce-Price-currencySymbol">$</span>52.00</span></del>
-                                                        <ins><span><span class="woocommerce-Price-currencySymbol">$</span>48.00</span></ins>
-                                                    </span>         
-                                                </div>
-                                                <div class="sp-details-hover">
-                                                    <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                                    <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                                </div>
-                                            </div>
+                                        <div class="sp-details-hover">
+                                          <a class="sp-cart" href="{% url 'add_to_cart' product_id=product.id %}"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
+                                          <a class="sp-wishlist" 
+                                          href="{% url 'add_to_wishlist' product_id=product.id %}"><i class="twi-heart2"></i></a>
                                         </div>
+                                      </div>
                                     </div>
+                                  </div>
+                                  {% endfor %}
                                 </div>
+                              </div>
+                              {% endfor %}
                             </div>
- 
-                        </div>
+                          </div>
+                          
+                          
                     </div>
                 </div>
             </div>
@@ -521,58 +468,28 @@ Home
                     </div>
                 </div>
                 <div class="row">
+                    {% for  New in  News %}
+                    
+                    
                     <div class="col-lg-4 col-md-6">
                         <div class="single-news">
                             <div class="news-thumb">
-                                <img src="assets/images/home/blog/1.jpg" alt="">
+                                <img src={{New.image.url}} alt="">
                             </div>
                             <div class="news-details">
                                 <span class="post-meta"><a href="#">In TV</a>, 1 week a go</span>
                                 <h4>
                                     <a href="single-post.html">
-                                        Ut enim ad minim venium eos qui
-                                        odit lorem telica comuo fira mende
+                                       {{New.title}}
                                      </a>
                                 </h4>   
                                 <a class="read-more" href="single-post.html">Read More</a>
                             </div>
                         </div>
                      </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-news">
-                            <div class="news-thumb">
-                                <img src="assets/images/home/blog/2.jpg" alt="">
-                            </div>
-                            <div class="news-details">
-                                <span class="post-meta"><a href="#">In Smartwatch</a>, 1 week a go</span>
-                                <h4>
-                                    <a href="single-post.html">
-                                        Excepteur sint occaecat cupidatat
-                                        non proident, sunt in culpa
-                                     </a>
-                                </h4>   
-                                <a class="read-more" href="single-post.html">Read More</a>
-                            </div>
-                        </div>
-                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-news">
-                            <div class="news-thumb">
-                                <img src="assets/images/home/blog/3.jpg" alt="">
-                            </div>
-                            <div class="news-details">
-                                <span class="post-meta"><a href="#">In Drones</a>, 1 week a go</span>
-                                <h4>
-                                    <a href="single-post.html">
-                                        Ut enim ad minim venium eos qui
-                                        odit lorem telica comuo fira mende
-                                     </a>
-                                </h4>   
-                                <a class="read-more" href="single-post.html">Read More</a>
-                            </div>
-                        </div>
-                     </div>
-                </div>
+                    
+                     {% endfor %}
+                  
                 <div class="row m-top-45">
                     <div class="col-lg-12 text-center">
                         <a href="#" class="goru-btn">view more</a>
@@ -629,13 +546,24 @@ Home
         </section>
         <!-- Mailchimp Section End -->
 
-        <script>
-            const tabLinks = document.querySelectorAll('.product-tab-title a');
-            tabLinks.forEach((link) => {
-                link.addEventListener('click', (event) => {
-                    const tabName = event.target.innerText;
-                    console.log(`Clicked tab: ${tabName}`);
-                });
-            });
-        </script>
+   
         {% endblock content %}
+
+{% block message %}
+
+<div class="container-md">
+
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+</div>
+
+{% endblock %}

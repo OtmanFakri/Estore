@@ -1,8 +1,12 @@
+//Create env
+python -m venv myenv
+//Active env
+myenv\Scripts\activate
 //install all bibloth
 1-pip install -r requirements.txt 
 //migration Databses 
-2-python3 manage.py migrate
+2-python manage.py migrate
 //create SureUser for Dashbord Admin
-3-python3 manage.py createsuperuser
+3-python manage.py createsuperuser
 //run Project
 4-python manage.py runserver

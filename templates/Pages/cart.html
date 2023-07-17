@@ -1,0 +1,179 @@
+{% extends './../Master/master.html' %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+
+
+{% block content %}
+        <!-- Banner Start -->
+        <section class="page-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="round-shape"></span>
+                        <h2 class="banner-title">Cart</h2>
+                        <div class="bread-crumb"><a href="index.html">Home</a> / Cart</div>
+                    </div>
+                </div>
+            </div>
+        </section>    
+        <!-- Banner End -->
+
+        <!-- Cart Section Start -->
+        <section class="cart-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="woocommerce-cart-form" action="#">
+                            <table class="cart-table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name-thumbnail">Product Name</th>
+                                        <th class="product-price">Unit Price</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-total">Total</th>
+                                        <th class="product-remove">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                
+                                    {% for cart_item in Carts %}
+                                    <tr id="row-{{cart_item.id}}" class="cart-item">
+                                        <td class="product-thumbnail-title">
+                                          <a href="#"><img src="{{cart_item.product.product_img}}" alt=""></a> 
+                                          <a class="product-name" href="#">{{cart_item.product.product_name}}</a>
+                                        </td>
+                                        <td class="product-unit-price">
+                                          <div class="product-price clearfix">
+                                            <span class="price">
+                                              <span><span class="woocommerce-Price-currencySymbol">$</span>{{cart_item.price}}</span>
+                                            </span>
+                                          </div>
+                                        </td>
+                                        <td class="product-quantity clearfix">
+                                          <div class="quantityd clearfix">
+                                            <button class="qtyBtn btnMinus"><span>-</span></button>
+                                            <input name="qty" value={{cart_item.qty}} title="Qty" class="input-text qty text carqty" type="text">
+                                            <button class="qtyBtn btnPlus">+</button>
+                                          </div>
+                                        </td>
+                                        <td class="product-total">
+                                          <div class="product-price clearfix">
+                                            <span class="price">
+                                                <span id="product-total-{{ cart_item.pk }}"><span class="woocommerce-Price-currencySymbol">$</span>{{cart_item.amount}}</span>
+                                            </span>
+                                          </div>
+                                        </td>
+                                        <td class="product-remove">
+                                          <a href="{% url 'remove_from_cart' cart_item_id=cart_item.pk %}"></a>
+                                        </td>
+                                      </tr>
+{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $('.cart-item').each(function() {
+        var $row = $(this);
+        var $qty = $row.find('.carqty');
+        var $plusBtn = $row.find('.btnPlus');
+        var $minusBtn = $row.find('.btnMinus');
+      
+        // Increment quantity
+        $plusBtn.click(function() {
+          var qty = parseInt($qty.val());
+          $qty.val(qty + 1);
+          updateRowTotal($row);
+        });
+      
+        // Decrement quantity
+        $minusBtn.click(function() {
+          var qty = parseInt($qty.val());
+          if (qty > 1) {
+            $qty.val(qty - 1);
+          }
+          updateRowTotal($row);
+        });
+      });
+      
+      function updateRowTotal($row) {
+        // Get unit price
+        var unitPrice = parseFloat($row.find('.product-unit-price .price').text().replace('$', ''));
+      
+        // Get quantity
+        var qty = parseInt($row.find('.carqty').val());
+      
+        // Calculate and update total
+        var total = unitPrice * qty;
+        $row.find('.product-total .price span').text('$' + total.toFixed(2));
+      
+        // Update the hidden input value if needed
+        $row.find('.product-total input').val(total.toFixed(2));
+      }
+      
+    </script>
+
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="coupon">
+                                        <h3>Counpon discount</h3>
+                                        <p>
+                                            Enter your code if you have one. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                        </p>
+                                        <input type="text" name="coupon_code" placeholder="Enter Your code Here"> 
+                                        <button type="submit" class="button" name="apply_coupon">Apply coupon</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="cart-totals">
+                                        <h2>Cart Totals</h2>
+                                        <table class="shop-table">
+                                            <tbody>
+                                                
+                                                <tr class="order-total">
+                                                    <th>Grand Total</th>
+                                                    <td data-title="Subtotal">
+                                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>48.00</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="wc-proceed-to-checkout">
+                                            <a href="#" class="checkout-button">Proceed to checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section End -->
+
+    
+{% endblock content %}
+
+{% block message %}
+
+<div class="container-md">
+
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+</div>
+
+{% endblock %}

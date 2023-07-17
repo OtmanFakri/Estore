@@ -19,6 +19,9 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderProductAdmin(admin.ModelAdmin):
     list_display = ['order','user' , 'product', 'price', 'qty', 'amount', 'status']
 
+
+
+
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category)
@@ -29,3 +32,5 @@ admin.site.register(Review)
 admin.site.register(Wishlist)
 admin.site.register(Banner)
 admin.site.register(Weekly_Deal)
+admin.site.register(News)
+
