@@ -236,7 +236,7 @@ Home
                                 <div class="col-lg-7 col-md-7">
                                     <div class="single-trending-product">
                                         <div class="trend-thumb">
-                                            <img src="{% static 'assets/images/home/t1.jpg' %}" alt="">
+                                            <img src="{% static 'assets/images/shop/t1.jpg' %}" alt="">
                                         </div>
                                         <div class="tr-pro-detail">
                                             <h3>
@@ -257,7 +257,7 @@ Home
                                 <div class="col-lg-5 col-md-5">
                                     <div class="single-trending-product">
                                         <div class="trend-thumb">
-                                            <img src="{% static 'assets/images/home/t1.jpg' %}" alt="">
+                                            <img src="{% static 'assets/images/shop/t2.jpg' %}" alt="">
                                         </div>
                                         <div class="tr-pro-detail">
                                             <h3>
@@ -479,11 +479,11 @@ Home
                             <div class="news-details">
                                 <span class="post-meta"><a href="#">In TV</a>, 1 week a go</span>
                                 <h4>
-                                    <a href="single-post.html">
+                                    <a href="{% url 'one_news' news_id=New.id %}">
                                        {{New.title}}
                                      </a>
                                 </h4>   
-                                <a class="read-more" href="single-post.html">Read More</a>
+                                <a class="read-more" href="{% url 'one_news' news_id=New.id %}">Read More</a>
                             </div>
                         </div>
                      </div>
