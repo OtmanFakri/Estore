@@ -45,15 +45,20 @@
                                 </div>
                             </div>
                             <ol class="carousel-indicators clearfix">
-                                <li data-target="#product-slider" data-slide-to="0" class="active"><img src="{{product.product_img.url}}" alt=""></li>
-                                <li data-target="#product-slider" data-slide-to="1"><img src="{{product.product_img1.url}}" alt=""></li>
-                                <li data-target="#product-slider" data-slide-to="2"><img src="{{product.product_img2.url}}" alt=""></li>
+                                <li data-target="#product-slider" data-slide-to="0" class="active">
+                                    <img src="{{ product.product_img.url }}" alt="" class="rounded-circle">
+                                </li>
+                                <li data-target="#product-slider" data-slide-to="1" class="active">
+                                    <img src="{{ product.product_img1.url }}" alt="" class="rounded-circle">
+                                </li> <li data-target="#product-slider" data-slide-to="2" class="active">
+                                    <img src="{{ product.product_img2.url }}" alt="" class="rounded-circle">
+                                </li>
                             </ol>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
                         <div class="sin-product-details">
-                            <h3>Gaming Controller</h3>
+                            <h3>{{product.product_name}}</h3>
                             <div class="woocommerce-product-rating">
                                 <div class="star-rating">
                                     <i class="twi-star"></i>
@@ -80,8 +85,8 @@
                             
                             <div class="product-cart-qty">
                                 
-                                <a href="#" class="add-to-cart-btn">Add To Cart</a>
-                                <a href="#" class="Whislist"><i class="twi-heart"></i></a>
+                                <a href="{% url 'add_to_cart' product_id=product.id %}" class="add-to-cart-btn">Add To Cart</a>
+                                <a href="{% url 'add_to_wishlist' product_id=product.id %}" class="Whislist"><i class="twi-heart"></i></a>
                                 <a href="#" class="compare"><i class="twi-random"></i></a>
                             </div>
                             <div class="pro-socila">
@@ -101,7 +106,7 @@
                                     <a class="nav-link active" id="descriptions-tab" data-toggle="tab" href="#descriptions" role="tab" aria-controls="descriptions" aria-selected="true">Description</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (2)</a>
+                                    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">REVIEWS {{reviews|length }}</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="productTabContent">
@@ -115,47 +120,45 @@
                                 </div>
                                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="descriptions-tab">
                                     <div class="comment-area">
-                                        <h4 class="comment-title">2 Reviews to “Gaming Controller”</h4>
+                                        <h4 class="comment-title">{{reviews|length }} Reviews to {{product.product_name}}</h4>
                                         <ol class="comment-list">
+                                            {% for review in reviews %}
                                             <li>
                                                 <div class="single-comment">
                                                     <img src="assets/images/blog/c1.jpg" alt="">
-                                                    <h5><a href="#">Jason Statham</a><span>July 06th, 2017</span></h5>
+                                                    <h5><a href="#">{{review.subject}}</a><span>{{review.published_date |timesince}}</span></h5>
                                                     <div class="comment">
                                                         <p>
-                                                            sapien lorem  et tristique nulla lectus fauc-ibus est Pellentesque dapibus
+                                                            {{review.review}}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="single-comment">
-                                                    <img src="assets/images/blog/c1.jpg" alt="">
-                                                    <h5><a href="#">Jason Statham</a><span>July 06th, 2017</span></h5>
-                                                    <div class="comment">
-                                                        <p>
-                                                            Proin vitae dignissim enim, a iaculis sapien. nisi et dignissim efficitur
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            {% endfor %}
+                                          
+                                           
                                         </ol>
                                         <div class="comment-form-wrapper">
                                             <h5>Add Reivew</h5>
-                                            <form action="#" method="post" class="row comment-form">
+                                            <form action="{% url 'store_review' prid=product.id%}" method="post" class="row comment-form">
+                                                {% csrf_token %}
                                                 <div class="col-lg-6 col-md-6">
-                                                    <input type="text" name="name" placeholder="Name">
+                                                    <input type="text" name="subject" placeholder="Subject">
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <input type="email" name="email" placeholder="Email">
                                                 </div>
                                                 <div class="col-lg-12 col-md-12">
-                                                    <textarea name="message" placeholder="Reviews"></textarea>
+                                                    <textarea name="review" placeholder="Review"></textarea>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <input type="number" name="rating" placeholder="Rating" min="1" max="5">
                                                 </div>
                                                 <div class="col-lg-12 col-md-12">
                                                     <input type="submit" name="submit" value="Submit Review">
                                                 </div>
                                             </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -179,124 +182,31 @@
                         <div class="related-product-area">
                             <h3>Related Products</h3>
                             <div class="related-slider owl-carousel">
+                                {% for products_category in products_categorys %}
+                                
                                 <div class="single-shop-product">
                                     <div class="sp-thumb">
-                                        <img src="assets/images/shop/5.jpg" alt="" class="">
+                                        <img src="{{products_category.product_img.url}}" alt="" class="">
                                         <div class="pro-badge">
                                             <p class="sale">Sale</p>
                                         </div>
                                     </div>
                                     <div class="sp-details">
-                                        <h4>VRBOX Gaming</h4>
+                                        <h4>{{products_category.product_name}}</h4>
                                         <div class="product-price clearfix">
                                             <span class="price">
                                                 <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
+                                                <ins><span><span class="woocommerce-Price-currencySymbol">$</span>{{products_category.price}}</span></ins>
                                             </span>         
                                         </div>
                                         <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
+                                            <a class="sp-cart" href="{% url 'add_to_cart'  product_id=products_category.id %}"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
+                                            <a class="sp-wishlist" href="{% url 'add_to_wishlist' product_id=products_category.id %}"><i class="twi-heart2"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="single-shop-product">
-                                    <div class="sp-thumb">
-                                        <img src="assets/images/shop/1.jpg" alt="" class="">
-                                        <div class="pro-badge">
-                                            <p class="hot">Hot</p>
-                                        </div>
-                                    </div>
-                                    <div class="sp-details">
-                                        <h4>Gaming Mouse</h4>
-                                        <div class="product-price clearfix">
-                                            <span class="price">
-                                                <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
-                                            </span>         
-                                        </div>
-                                        <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-shop-product">
-                                    <div class="sp-thumb">
-                                        <img src="assets/images/shop/8.jpg" alt="" class="">
-                                    </div>
-                                    <div class="sp-details">
-                                        <h4>Wirless Headset</h4>
-                                        <div class="product-price clearfix">
-                                            <span class="price">
-                                                <span><span class="woocommerce-Price-currencySymbol">$</span>122.00</span>
-                                            </span>         
-                                        </div>
-                                        <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-shop-product">
-                                    <div class="sp-thumb">
-                                        <img src="assets/images/shop/5.jpg" alt="" class="">
-                                        <div class="pro-badge">
-                                            <p class="sale">Sale</p>
-                                        </div>
-                                    </div>
-                                    <div class="sp-details">
-                                        <h4>VRBOX Gaming</h4>
-                                        <div class="product-price clearfix">
-                                            <span class="price">
-                                                <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
-                                            </span>         
-                                        </div>
-                                        <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-shop-product">
-                                    <div class="sp-thumb">
-                                        <img src="assets/images/shop/1.jpg" alt="" class="">
-                                        <div class="pro-badge">
-                                            <p class="hot">Hot</p>
-                                        </div>
-                                    </div>
-                                    <div class="sp-details">
-                                        <h4>Gaming Mouse</h4>
-                                        <div class="product-price clearfix">
-                                            <span class="price">
-                                                <del><span><span class="woocommerce-Price-currencySymbol">$</span>42.00</span></del>
-                                                <ins><span><span class="woocommerce-Price-currencySymbol">$</span>38.00</span></ins>
-                                            </span>         
-                                        </div>
-                                        <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-shop-product">
-                                    <div class="sp-thumb">
-                                        <img src="assets/images/shop/8.jpg" alt="" class="">
-                                    </div>
-                                    <div class="sp-details">
-                                        <h4>Wirless Headset</h4>
-                                        <div class="product-price clearfix">
-                                            <span class="price">
-                                                <span><span class="woocommerce-Price-currencySymbol">$</span>122.00</span>
-                                            </span>         
-                                        </div>
-                                        <div class="sp-details-hover">
-                                            <a class="sp-cart" href="#"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
-                                            <a class="sp-wishlist" href="#"><i class="twi-heart2"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>

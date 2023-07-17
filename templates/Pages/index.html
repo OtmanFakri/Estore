@@ -169,7 +169,7 @@ Home
                 <div class="row">
                     {% for categorie  in categories %}
                     <div class="col-lg-2 col-md-4">
-                        <a href="#" class="single-cate">
+                        <a href="{% url 'products_by_category' category_id=categorie.id %}" class="single-cate">
                             <img src={{categorie.category_image.url}} />
                             
                         </a>
@@ -366,7 +366,7 @@ Home
                                   <div class="pp-single-slider">
                                     <div class="single-popular-product">
                                       <div class="sp-thumb">
-                                        <img  width="370" height="460" src="http://127.0.0.1:8000/media/{{product.product_img1}}" alt="">
+                                        <img  width="370" height="460" src="http://127.0.0.1:8000/media/{{product.product_img}}" alt="">
                                         {% if product.tag == "Sale" %}
                                         <div class="pro-badge">
                                           <p class="sale">Sale</p>
@@ -426,7 +426,7 @@ Home
                                 </span>           
                             </div>
                             <div id="countdown-coupone" class="clearfix" data-day={{ Weekly_Deal.time.day }} data-month={{ Weekly_Deal.time.month }} data-year={{ Weekly_Deal.time.year }}></div>
-                            <a class="goru-btn" href="single-product.html">Shop Now</a>
+                            <a class="goru-btn" href="{% url 'product_detail' product_id=Weekly_Deal.product.id %}">Shop Now</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">

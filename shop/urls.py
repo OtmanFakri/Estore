@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .Views import  Singup, Login ,Index , wishlist,Cart,Chechkount,News,product
+from .Views import  Singup, Login ,Index , wishlist,Cart,Chechkount,News,product,about,contact,store_review
 
 
 handler404 = 'shop.Views.handler404.handler404'
@@ -9,7 +9,11 @@ urlpatterns = [
     path("", Index.index, name="ShopHome"),
     path("signup/", Singup.Signup.as_view(), name="SignUp"),
     path("login/", Login.Login.as_view(), name="LogIn"),
-    
+
+    path("about/", about.about, name="about"),
+    path("contact/", contact.contact, name="contact"),
+
+
     path('wishlist/', wishlist.index, name='index_wishlist'),
     path('cart/', Cart.index, name='index_cart'),
 
@@ -19,11 +23,14 @@ urlpatterns = [
     path('cart/add/<int:product_id>/', Cart.add_to_cart, name='add_to_cart'),
     path('cart/remove/<int:cart_item_id>/', Cart.remove_from_cart, name='remove_from_cart'),
 
+    path('review/add/<int:prid>', store_review.store_review, name='store_review'),
+
+
     path('prodct/', Index.prd, name='my-view'),
 
     path('Checkout/', Chechkount.checkout, name='Checkout'),
 
-    path('news/', News.index, name='index'),
+    path('news/', News.index, name='index_news'),
     path('news/<int:news_id>/', News.one_news, name='one_news'),
 
     path('products/', product.all_products, name='all_products'),

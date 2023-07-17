@@ -5,7 +5,7 @@ from Helper import saveImage
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default="")
-    phone = models.BigIntegerField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
     house_no = models.CharField(null=True, max_length=20)
     street = models.CharField(null=True, max_length=50)
     city = models.CharField(null=True, max_length=20)
@@ -62,10 +62,13 @@ class Cart(models.Model):
 
     @property
     def price(self):
-        return self.product.price
+        if self.product_id is not  None:
+            return self.product.price
 
     @property
     def amount(self):
+        if self.product_id is None:
+            return None
         return self.qty * self.product.price
 
     def __str__(self):
@@ -122,7 +125,8 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.product_name + " by " + self.user.first_name
+        return self.product.product_name + " by " + self.customer.user.username
+
 
 
 class Wishlist(models.Model):

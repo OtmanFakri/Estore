@@ -16,7 +16,6 @@ def index(request):
 
 
 
-        print(Weekly_Deals.product.price)
 
         context={
                 'Banners' : Banners,

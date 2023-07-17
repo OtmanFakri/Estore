@@ -61,7 +61,7 @@ wishlist
                                             <a href="#">In Stock</a>
                                         </td>
                                         <td class="add-to-cart">
-                                            <a href="{% url 'add_to_cart' product_id=Wishlist.id %}">Add To Cart</a>
+                                            <a href="{% url 'add_to_cart' product_id=Wishlist.product.id %}">Add To Cart</a>
                                         </td>
                                         <td class="product-remove">
                                             <a href="{% url 'remove_from_wishlist' wishlist_id=Wishlist.pk %}"></a>

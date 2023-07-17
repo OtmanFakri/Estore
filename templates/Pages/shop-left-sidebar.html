@@ -70,7 +70,7 @@ Products
                         </div>
                         <div class="row">
 
-                            {% for product in products %}
+                            {% for product in page_obj %}
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-shop-product">
                                     <div class="sp-thumb">
@@ -103,15 +103,24 @@ Products
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 col-md-12 mt-20">
                                 <div class="goru-pagination text-center clearfix">
-                                    <a class="prev" href="#"><i class="twi-long-arrow-alt-left"></i></a>
-                                    <span class="current">1</span>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#">4</a>
-                                    <a href="#">5</a>
-                                    <a class="next" href="#"><i class="twi-long-arrow-alt-right"></i></a>
+                                    {% if page_obj.has_previous %}
+                                        <a class="prev" href="?page={{ page_obj.previous_page_number }}"><i class="twi-long-arrow-alt-left"></i></a>
+                                    {% endif %}
+                            
+                                    {% for num in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == num %}
+                                            <span class="current">{{ num }}</span>
+                                        {% else %}
+                                            <a href="?page={{ num }}">{{ num }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                            
+                                    {% if page_obj.has_next %}
+                                        <a class="next" href="?page={{ page_obj.next_page_number }}"><i class="twi-long-arrow-alt-right"></i></a>
+                                    {% endif %}
                                 </div>
                             </div>
+                            
                         </div> 
                     </div>
                 </div>

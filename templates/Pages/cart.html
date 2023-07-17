@@ -43,7 +43,7 @@ Cart
                                     {% for cart_item in Carts %}
                                     <tr id="row-{{cart_item.id}}" class="cart-item">
                                         <td class="product-thumbnail-title">
-                                          <a href="#"><img src="{{cart_item.product.product_img}}" alt=""></a> 
+                                          <a href="#"><img src="{{cart_item.product.product_img.url}}" alt=""></a> 
                                           <a class="product-name" href="#">{{cart_item.product.product_name}}</a>
                                         </td>
                                         <td class="product-unit-price">
@@ -143,7 +143,7 @@ Cart
                                             </tbody>
                                         </table>
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="#" class="checkout-button">Proceed to checkout</a>
+                                            <a href="{% url 'Checkout' %}" class="checkout-button">Proceed to checkout</a>
                                         </div>
                                     </div>
                                 </div>
