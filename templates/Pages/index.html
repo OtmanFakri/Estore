@@ -1,0 +1,569 @@
+
+{% extends './../Master/master.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block content %}
+
+        <!-- Slider Start -->
+        <section class="slider-01">
+
+            <!-- Scroll Btn -->
+            <div class="scroll-down"><a href="#coupone">scroll to explore</a><img src="{% static 'assets/images/home/scroll.png' %}" alt=""></div>
+            <!-- Scroll Btn -->
+
+            <!-- Counting Item -->
+            <div class="slider-counter">
+                <span class="current-item">02</span>
+                <span class="bar"></span>
+                <span class="total-item">04</span>
+            </div>
+            <!-- Counting Item -->
+
+            <div class="rev_slider_wrapper">
+                <div id="rev_slider_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
+                    <ul>
+                        {% for Banner in Banners %}
+                        <li class="rev-slidebg">
+                            <div class="tp-caption tp-resizeme textRes title-1"
+                                 data-x="['left','left','center','center']" 
+                                 data-hoffset="['0']" 
+
+                                 data-y="['middle']" 
+                                 data-voffset="['-132','-110','-60','-70']" 
+
+                                 data-fontsize="['60','45','40','36']"
+                                 data-fontweight="700"
+                                 data-lineheight="['72','50','52','46']"
+                                 data-width="['570','500','500','100%']"
+                                 data-height="['auto']"
+                                 data-whitesapce="['normal']"
+                                 data-color="['#000000']"
+
+                                 data-type="text" 
+                                 data-responsive_offset="on" 
+
+                                 data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},
+                                 {"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+
+
+                                 data-textAlign="['left','left','center','center']"
+                                 data-paddingtop="[0,0,0,0]"
+                                 data-paddingright="[0,0,0,20]"
+                                 data-paddingbottom="[0,0,0,0]"
+                                 data-paddingleft="[0,0,0,20]"
+
+                                 style="z-index: 5;  white-space: normal; text-transform: none;">{{Banner.title}}</div>
+                            <div class="tp-caption tp-resizeme textRes"
+                                 data-x="['left','left','center','center']" 
+                                 data-hoffset="['0']" 
+
+                                 data-y="['middle']" 
+                                 data-voffset="['17','17','50','40']" 
+
+                                 data-fontsize="['24','20','18','18']"
+                                 data-fontweight="400"
+                                 data-lineheight="['36','32','30','28']"
+                                 data-width="['570','500','500','100%']"
+                                 data-height="['auto']"
+                                 data-whitesapce="['normal']"
+                                 data-color="['#666666']"
+
+                                 data-type="text" 
+                                 data-responsive_offset="off" 
+
+                                 data-frames='[{"delay":2000,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},
+                                 {"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+
+                                 data-textAlign="['left','left','center','center']"
+                                 data-paddingtop="[0,0,0,0]"
+                                 data-paddingright="[0,0,0,20]"
+                                 data-paddingbottom="[0,0,0,0]"
+                                 data-paddingleft="[0,0,0,20]"
+
+                                 style="z-index: 5; white-space: normal; text-transform: none;">{{Banner.description}}
+                            </div>
+                            <div class="tp-caption tp-resizeme textRes"
+                                 data-x="['left','left','center','center']" 
+                                 data-hoffset="['0']" 
+
+                                 data-y="['middle']" 
+                                 data-voffset="['145','145','150','145']" 
+
+                                 data-fontsize="14"
+                                 data-fontweight="700"
+                                 data-lineheight=".8"
+                                 data-width="['auto']"
+                                 data-height="['auto']"
+                                 data-whitesapce="['normal']"
+                                 data-color="['#FaFF']"
+
+                                 data-type="text" 
+                                 data-responsive_offset="off" 
+
+                                 data-frames='[{"delay":2500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},
+                                 {"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+
+                                 data-textAlign="center"
+                                 data-paddingtop="[0,0,0,0]"
+                                 data-paddingright="[0,0,0,20]"
+                                 data-paddingbottom="[0,0,0,0]"
+                                 data-paddingleft="[0,0,0,20]"
+
+                                 style="z-index: 5;"><a href="#" class="goru-btn">view collection</a>
+                            </div>
+                            <div class="tp-caption tp-resizeme slider-image"
+                                 data-x="['right','right','center','center']" 
+                                 data-hoffset="['-50','50','0','0']" 
+
+                                 data-y="['middle']" 
+                                 data-voffset="['0']" 
+                                 data-width="['auto','350','auto','auto']"
+                                 data-height="['auto']"
+
+
+                                 data-type="image" 
+                                 data-responsive_offset="off" 
+
+                                 data-frames='[{"delay":3500,"speed":2500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+
+
+                                 data-textAlign="center"
+                                 data-paddingtop="[0,0,0,0]"
+                                 data-paddingright="[0,0,0,25]"
+                                 data-paddingbottom="[0,0,0,0]"
+                                 data-paddingleft="[0,0,0,25]"
+
+                                 style="z-index: 5;"><img src="{{Banner.image.url}}" alt="">
+                            </div>
+                        </li>
+                        {% endfor %}
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </section>    
+        <!-- Slider End -->
+
+        <!-- Categories Section Start -->
+        <section class="categorie-section">
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-rl">Product <span> Categories</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="sec-title">Product Categories</h2>
+                        <p class="sec-desc">
+                            Sed ut perspiciatis unde omnis iste natus<br> er sit voluptatem accusantium dolore.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for categorie  in categories %}
+                    <div class="col-lg-2 col-md-4">
+                        <a href="{% url 'products_by_category' category_id=categorie.id %}" class="single-cate">
+                            <img src={{categorie.category_image.url}} />
+                            
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- shpage -->
+            <div class="cate-shage"><img src="{% static 'assets/images/home/shape1.png' %}" alt=""></div>
+        </section>
+        <!-- Categories Section End -->
+
+        <!-- Service Section Start -->
+        <section class="service-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-service">
+                            <img src="{% static 'assets/images/home/truck.png' %}" alt="">
+                            <h4>100% Free Shipping</h4>
+                            <p>We ship all our products for free as long as you buying within the USA.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-service">
+                            <img src="{% static 'assets/images/home/headphone.png' %}" alt="">
+                            <h4>24/7 Support</h4>
+                            <p>Our support team is extremely active, you will get response within 2 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-service">
+                            <img src="{% static 'assets/images/home/undo.png' %}" alt="">
+                            <h4>30 Day Return</h4>
+                            <p>Our 30 day return program is open from customers, just fill up a simple form.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Service Section End -->
+
+        <!-- Trending Section Start -->
+        <section class="trending-section" style="background-image: url(assets/images/home/shape2.png);">
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-tb">Trending <span> Products</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="sec-title">Trending Products</h2>
+                        <p class="sec-desc">
+                            Sed ut perspiciatis unde omnis iste natus er<br> sit voluptatem accusantium dolore.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="trending-slider owl-carousel">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="single-trending-product">
+                                        <div class="trend-thumb">
+                                            <img src="{% static 'assets/images/shop/t1.jpg' %}" alt="">
+                                        </div>
+                                        <div class="tr-pro-detail">
+                                            <h3>
+                                                <a href="single-product.html">TV Remove Controller</a>
+                                                <div class="product-price clearfix">
+                                                    <span class="price">
+                                                        <span><span class="woocommerce-Price-currencySymbol">$</span>112.00</span>
+                                                    </span>           
+                                                </div>
+                                            </h3>
+                                            <p>
+                                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequid.
+                                            </p>
+                                            <a class="tr-atc" href="#">Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <div class="single-trending-product">
+                                        <div class="trend-thumb">
+                                            <img src="{% static 'assets/images/shop/t2.jpg' %}" alt="">
+                                        </div>
+                                        <div class="tr-pro-detail">
+                                            <h3>
+                                                <a href="single-product.html">Camera Lenses</a>
+                                                <div class="product-price clearfix">
+                                                    <span class="price">
+                                                        <span><span class="woocommerce-Price-currencySymbol">$</span>72.00</span>
+                                                    </span>           
+                                                </div>
+                                            </h3>
+                                            <p>
+                                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conse.
+                                            </p>
+                                            <a class="tr-atc" href="#">Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5">
+                                    <div class="single-trending-product">
+                                        <div class="trend-thumb">
+                                            <img src="assets/images/home/t2.jpg" alt="">
+                                        </div>
+                                        <div class="tr-pro-detail">
+                                            <h3>
+                                                <a href="single-product.html">Camera Lenses</a>
+                                                <div class="product-price clearfix">
+                                                    <span class="price">
+                                                        <span><span class="woocommerce-Price-currencySymbol">$</span>72.00</span>
+                                                    </span>           
+                                                </div>
+                                            </h3>
+                                            <p>
+                                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conse.
+                                            </p>
+                                            <a class="tr-atc" href="#">Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="single-trending-product">
+                                        <div class="trend-thumb">
+                                            <img src="assets/images/home/t1.jpg" alt="">
+                                        </div>
+                                        <div class="tr-pro-detail">
+                                            <h3>
+                                                <a href="single-product.html">TV Remove Controller</a>
+                                                <div class="product-price clearfix">
+                                                    <span class="price">
+                                                        <span><span class="woocommerce-Price-currencySymbol">$</span>112.00</span>
+                                                    </span>           
+                                                </div>
+                                            </h3>
+                                            <p>
+                                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequid.
+                                            </p>
+                                            <a class="tr-atc" href="#">Add To Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Trending Section End -->
+
+        <!-- Popular Section Start -->
+        <section class="popular-section">
+
+            <!-- Shape Round -->
+            <div class="shape-round">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <!-- Shape Round -->
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-rl">Most <span>Popular</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="sec-title">Most Popular</h2>
+                        <div class="container">
+                            <ul class="nav nav-pills" id="myTab" role="tablist">
+                              {% for category in trending_categorys %}
+                              <li class="nav-item">
+                                <a class="nav-link{% if forloop.first %} active{% endif %}" id="category-tab-{{ forloop.counter }}" data-toggle="pill" href="#category-{{ forloop.counter }}" role="tab" aria-controls="category-{{ forloop.counter }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                                  {{ category.category_name }}
+                                </a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                            <div class="tab-content mt-3" id="myTabContent">
+                              {% for category in trending_categorys %}
+                              <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="category-{{ forloop.counter }}" role="tabpanel" aria-labelledby="category-tab-{{ forloop.counter }}">
+                                <div class="popular-tab-slider owl-carousel">
+                                  {% for product in category.category_list %}
+                                  <div class="pp-single-slider">
+                                    <div class="single-popular-product">
+                                      <div class="sp-thumb">
+                                        <img  width="370" height="460" src="http://127.0.0.1:8000/media/{{product.product_img}}" alt="">
+                                        {% if product.tag == "Sale" %}
+                                        <div class="pro-badge">
+                                          <p class="sale">Sale</p>
+                                        </div>
+                                        {% elif product.tag == "Hot" %}
+                                        <div class="pro-badge">
+                                          <p class="hot">Hot</p>
+                                        </div>
+                                        {% endif %}
+                                      </div>
+                                      <div class="sp-details">
+                                        <h4>{{ product.product_name }}</h4>
+                                        <div class="product-price clearfix">
+                                          <span class="price">
+                                            {% if product.price != 0 %}
+                                            <del><span><span class="woocommerce-Price-currencySymbol">$</span>{{ product.price }}</span></del>
+                                            {% endif %}
+                                          </span>
+                                        </div>
+                                        <div class="sp-details-hover">
+                                          <a class="sp-cart" href="{% url 'add_to_cart' product_id=product.id %}"><i class="twi-cart-plus"></i><span>Add to cart</span></a>
+                                          <a class="sp-wishlist" 
+                                          href="{% url 'add_to_wishlist' product_id=product.id %}"><i class="twi-heart2"></i></a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                          
+                          
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Popular Section End -->
+
+        <!-- Coupon Discount Start -->
+        <section class="coupone-discount-sec" id="coupone">
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-tb">Coupon <span>Deals</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-5">
+                        <div class="dis-product-detail">
+                            <h4>Weekly Deasl</h4>
+                            <div class="product-price clearfix">
+                                <span class="price">
+                                    <span><span class="woocommerce-Price-currencySymbol">$</span>{{ Weekly_Deal.product.price }}</span>
+                                </span>           
+                            </div>
+                            <div id="countdown-coupone" class="clearfix" data-day={{ Weekly_Deal.time.day }} data-month={{ Weekly_Deal.time.month }} data-year={{ Weekly_Deal.time.year }}></div>
+                            <a class="goru-btn" href="{% url 'product_detail' product_id=Weekly_Deal.product.id %}">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-7">
+                        <div class="dis-pro-thumb">
+                            <img src={{ Weekly_Deal.product.product_img.url }} alt="" width="500" height="590">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- shape -->
+            <div class="couple-shape"><img src="assets/images/home/shape3.png" alt=""></div>
+        </section>
+        <!-- Coupon Discount End -->
+
+        <!-- News Section Start -->
+        <section class="news-section">
+
+            <!-- Shape Round -->
+            <div class="shape-round">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <!-- Shape Round -->
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-tb">Latest <span>News</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="sec-title">Latest News</h2>
+                        <p class="sec-desc">
+                            Sed ut perspiciatis unde omnis iste<br> natus er sit voluptatem accusantium dolore.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for  New in  News %}
+                    
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-news">
+                            <div class="news-thumb">
+                                <img src={{New.image.url}} alt="">
+                            </div>
+                            <div class="news-details">
+                                <span class="post-meta"><a href="#">In TV</a>, 1 week a go</span>
+                                <h4>
+                                    <a href="{% url 'one_news' news_id=New.id %}">
+                                       {{New.title}}
+                                     </a>
+                                </h4>   
+                                <a class="read-more" href="{% url 'one_news' news_id=New.id %}">Read More</a>
+                            </div>
+                        </div>
+                     </div>
+                    
+                     {% endfor %}
+                  
+                <div class="row m-top-45">
+                    <div class="col-lg-12 text-center">
+                        <a href="#" class="goru-btn">view more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- News Section End -->
+
+        <!-- Client Section Start -->
+        <section class="client-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="client-logo owl-carousel">
+                            <a href="#"><img src="assets/images/home/client-logo/1.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/2.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/3.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/4.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/5.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/1.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/2.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/3.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/4.png" alt=""></a>
+                            <a href="#"><img src="assets/images/home/client-logo/5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Client Section End -->
+
+        <!-- Mailchimp Section Start -->
+        <section class="mailchimp-section">
+
+            <!-- Section Heading -->
+            <div class="sec-heading rotate-rl">Newsletter <span>Sign-Up</span></div>
+            <!-- Section Heading -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 text-center mx-auto">
+                        <h3 class="sec-title">Get Discount 30% Off</h3>
+                        <form class="mailchimp-form" action="#" method="post">
+                            <input type="email" name="email" placeholder="your email">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- shape -->
+            <div class="mailchimp-shape"><img src="assets/images/home/shape4.png" alt=""></div>
+        </section>
+        <!-- Mailchimp Section End -->
+
+   
+        {% endblock content %}
+
+{% block message %}
+
+<div class="container-md">
+
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+</div>
+
+{% endblock %}
